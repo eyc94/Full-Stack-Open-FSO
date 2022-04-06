@@ -145,3 +145,28 @@ xhttp.send();
 - The `ul` is then appended to the proper place in the HTML tree.
 
 
+## Manipulating The Document-Object From Console
+- Topmost node is `document` object.
+    - Type `document` in the console to access this object.
+- Add new note to the page using the console.
+- Get the list of notes from the page.
+    - The list is in the first `ul` element of the page.
+```javascript
+list = document.getElementsByTagName('ul')[0];
+```
+- Create a new `li` element and add some text content to it:
+```javascript
+newElement = document.createElement('li');
+newElement.textContent = 'Page manipulation from console is easy';
+```
+- Add new `li` to the list:
+```javascript
+list.appendChild(newElement);
+```
+- This adds the new note to the bottom of the list.
+    - Changes are not permanent.
+    - Gone after refreshing.
+    - Changes not pushed to server.
+- The JS code that is fetched by the browser will always create the list of notes based on JSON-data from `https://studies.cs.helsinki.fi/exampleapp/data.json`.
+
+
