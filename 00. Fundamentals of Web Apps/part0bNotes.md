@@ -135,3 +135,13 @@ xhttp.send();
     - The runtime environment (browser) calls them when appropriate (when the event occurs).
 
 
+## Document Object Model or DOM
+- HTML pages are implicit tree structures.
+    - Can also go to the `Elements` tab to see a tree-like structure.
+- Functioning of browser is based on idea of depicting HTML elements as a tree.
+- `Document Object Model`, or `DOM`, is an `Application Programming Interface (API)` that allows modification of element trees of web pages.
+- The JS code above created a `ul` element and append the creation of an `li` element.
+    - Done using DOM.
+- The `ul` is then appended to the proper place in the HTML tree.
+
+
