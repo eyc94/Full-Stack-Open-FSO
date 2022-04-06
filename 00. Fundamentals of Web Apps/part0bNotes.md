@@ -124,3 +124,14 @@ xhttp.send();
     - You can expand the 100 printed json data and view each one of them.
 
 
+## Event Handlers and Callback Functions
+- Structure of the JS code is strange.
+- The request to the server is actually sent at the way bottom, but the code to handle the response is found way up.
+- An `event handler` for the event `onreadystatechange` is defined for `xhttp` object doing request.
+    - When the state of this object changes, the browser calls the event handler function.
+    - The code checks that `readyState` is 4 (operation complete) and HTTP status code is 200.
+- Event handler functions are called `callback` functions.
+    - The app code does not call the functions.
+    - The runtime environment (browser) calls them when appropriate (when the event occurs).
+
+
