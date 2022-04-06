@@ -1,0 +1,12 @@
+# General Info
+
+- Intro to modern web dev with JavaScript.
+- Main focus on Single Page Apps (SPA).
+    - Implemented with React.
+    - Supported with RESTful and GraphQL web services implemented with Node.js.
+- Parts on TypeScript, React Native, and Continous Integration.
+- Debugging apps.
+- Container technology.
+- Configuration.
+- Managing runtime environments.
+- Databases.
