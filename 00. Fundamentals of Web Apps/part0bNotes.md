@@ -73,3 +73,54 @@ app.get('/', (req, res) => {
     - This course uses `Express` and `Node.js` to create web servers.
 
 
+## Running Application Logic In The Browser
+- Keep dev console open.
+- Click the cancel symbol in the top left.
+    - Or type `clear()` in the console to clear the console.
+- Go to the notes page, and the browser does 4 HTTP requests.
+    - Notice all requests have different types.
+        - Document, stylesheet, script, xhr.
+- Looking at the `notes` document, the HTML code does not contain the list of notes.
+    - There is a script tag.
+    - This script tag fetches the JS file called `main.js`.
+- The JS code looks like this:
+```javascript
+var xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        const data = JSON.parse(this.responseText);
+        console.log(data);
+
+        var ul = document.createElement('ul');
+        ul.setAttribute('class', 'notes');
+
+        data.forEach(function(note) {
+            var li = document.createElement('li');
+
+            ul.appendChild(li);
+            li.appendChild(document.createTextNode(note.content));
+        });
+
+        document.getElementById('notes').appendChild(ul);
+    }
+};
+
+xhttp.open('GET', '/data.json', true);
+xhttp.send();
+```
+- This code is not relevant to the coding techniques of the course.
+    - We will return to modern ways of making requests to the server in part 2.
+- Browser executes code after fetching JS.
+- The last two lines tell the browser to do an HTTP GET request to the server's address `/data.json`.
+- Go to `https://studies.cs.helsinki.fi/exampleapp/data.json`.
+    - See raw json data.
+    - Need JSON formatting plugin to see it nicely formatted.
+- JS code downloaded the json data and forms a bullet-point list with it.
+- Code creates an unordered list with a `ul` tag.
+    - It then adds an `li` tag for each note.
+    - Only the content of the note becomes the content of the `li` tag.
+- Go to the dev console in the `Console` tab.
+    - You can expand the 100 printed json data and view each one of them.
+
+
