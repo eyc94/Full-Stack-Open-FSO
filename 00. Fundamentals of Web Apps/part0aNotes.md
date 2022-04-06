@@ -1,5 +1,4 @@
 # General Info
-
 - Intro to modern web dev with JavaScript.
 - Main focus on Single Page Apps (SPA).
     - Implemented with React.
