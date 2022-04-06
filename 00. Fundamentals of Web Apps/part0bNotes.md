@@ -30,3 +30,46 @@
     4. The server responds with the png image.
 
 
+## Traditional Web Applications
+- When entering page, browser fetches the HTML document from server.
+    - The document can be static from the server's directory.
+    - It can also be dynamic.
+        - Formed according to application code with data from a database.
+- The example app is formed dynamically because of the number of notes it displays.
+- HTML code of homepage is:
+```javascript
+const getFrontPageHtml = (noteCount) => {
+    return (`
+        <!DOCTYPE html>
+        <html>
+            <head>
+            </head>
+            <body>
+                <div class='container'>
+                    <h1>Full stack example app</h1>
+                    <p>number of notes created ${noteCount}</p>
+                    <a href='/notes'>notes</a>
+                    <img src='kuva.png' width='200' />
+                </div>
+            </body>
+        </html>
+    `);
+};
+
+app.get('/', (req, res) => {
+    const page = getFrontPageHtml(notes.length);
+    res.send(page);
+});
+```
+- Notice above that the HTML page is saved as a template string.
+    - The dynamic part is the `noteCount` variable.
+- Writing HTML in the middle of code is not smart.
+    - Standard for old-school PHP programmers.
+- In traditional web apps, the browser is "dumb".
+    - Fetches HTML from the server.
+    - All app logic is on the server.
+    - Server can be created using Java Spring, Python Flask, or Ruby on Rails.
+- Example uses `Express` from `Node.js`.
+    - This course uses `Express` and `Node.js` to create web servers.
+
+
