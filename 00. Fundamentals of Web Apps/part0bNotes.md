@@ -373,3 +373,9 @@ var sendToServer = function(note) {
 - More common nowadays for developers to be proficient in all layers of the app and database.
 
 
+## JavaScript Fatigue
+- Full stack web development is challenging in many ways.
+- JavaScript and its libraries are ever-changing.
+    - Some are tired because of this and coin it `JavaScript fatigue`.
+
+
