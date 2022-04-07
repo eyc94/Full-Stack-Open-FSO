@@ -332,3 +332,25 @@ var sendToServer = function(note) {
     - Data is then sent as a JSON-string.
 
 
+## JavaScript-Libraries
+- The sample is done using `vanilla JavaScript`.
+    - Using only DOM-API and JavaScript to manipulate structure of pages.
+- Instead of using vanilla, there are libraries that help make it easier to work with DOM-API.
+    - Like `jQuery`.
+- `jQuery`.
+    - Developed when web apps followed traditional style of server generating HTML pages.
+    - Functionality enhanced on browser side using JS written with jQuery.
+    - Cross-browser compatibility.
+        - Worked regardless of browser or company that made it.
+    - Nowadays jQuery is not as justified.
+- Rise of SPA brought more modern ways of development.
+    - First is `BackboneJS`.
+    - Another launched in 2012 and was Google's `AngularJS`.
+        - Quickly became defacto standard.
+        - Popularity plummeted in 2014 because Angular team announced support for version 1 will end.
+        - Angular 2 is not backwards compatible with 1.
+    - The most popular tool for implementing browser-side logic of web-apps is Facebook's `React` library.
+    - We use React and `Redux` libraries.
+    - `VueJS` has been capturing some interest.
+
+
