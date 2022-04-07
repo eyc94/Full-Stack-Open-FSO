@@ -98,3 +98,36 @@ const App = () => {
 - JS code in curly braces is evaluated and the result is printed in the place of the curly braces.
 
 
+## JSX
+- Looks like our component is returning HTML, but it's not.
+- The layout of React components is mostly written using `JSX`.
+    - Looks like HTML.
+    - We are dealing with a way to write JS.
+- JSX returned by React is compiled into JS.
+- After compiling, app looks like this:
+```javascript
+const App = () => {
+    const now = new Date();
+    const a = 10;
+    const b = 20;
+
+    return React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'p', null, 'Hello world, it is ', now.toString()
+        ),
+        React.createELement(
+            'p', null, a, ' plus ', b, ' is ', a + b
+        )
+    );
+};
+```
+- Compiling is handled by `Babel`. Done automatically to projects created with `create-react-app`.
+- Can write React as 'pure JS', but that's dumb.
+- JSX is like HTML, but with JSX you can embed JS using curly braces.
+    - Like a templating language.
+    - Like `XML` because every tag needs to be closed.
+- For example, `<br>` needs to be written like `<br />`.
+
+
