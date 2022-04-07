@@ -259,3 +259,76 @@ app.post('/new_note', (req, res) => {
     - They are not RESTful.
 
 
+## Single Page App
+- Home page is like a traditional web-page.
+    - Browser renders the HTML.
+    - Server has logic.
+- The notes page tells the browser to generate HTML code for existing notes.
+    - Browser does this by running the JS code it fetched from server.
+    - The code gets the notes from the server as JSON data.
+    - It then adds the HTML elements for displaying the notes to the page using DOM-API.
+- `Single-Page Application (SPA)` style of creating web-apps has emerged.
+    - They don't fetch all their pages separately from the server like the sample app.
+    - It comprises one HTML page fetched from the server.
+        - The contents are manipulated with JS that runs in the browser.
+- The current Notes page resembles SPA, but not quite.
+    - Logic for rendering notes is run on the browser.
+    - Still uses the traditional way of adding new notes.
+    - Data is sent to server with form submit.
+    - The server then tells the browser to reload the Notes page with a `redirect`.
+- The SPA version is `https://studies.cs.helsinki.fi/exampleapp/spa`.
+    - Looks the same.
+    - HTML is code is almost identical, but the JS is different `spa.js`.
+    - There is a small change in how the form-tag is defined.
+        - the `form` element has no `action` or `method` attribute to tell how and where to send input data.
+    - Open the `Network` tab and empty it.
+    - Add a new note and notice how the browser sends one request to the server.
+        - The POST request contains the new note as JSON data that has both the content of the note, `content`, and the timestamp, `date`.
+    - The `Content-Type` request header tells server that the included data in is JSON.
+        - Without it, server has no idea how to properly parse the data.
+    - Server responds with status code 201 created.
+        - This time server does not ask for a redirect and browser stays on the same page.
+        - Does not send anymore HTTP requests.
+- The SPA version uses the JS code it got from the server to send send data.
+```javascript
+var form = document.getElementById('notes_form');
+form.onSubmit = function(e) {
+    e.preventDefault();
+
+    var note = {
+        content: e.target.elements[0].value,
+        date: new Date()
+    };
+
+    notes.push(note);
+    e.target.elements[0].value = '';
+    redrawNotes();
+    sendToServer(note);
+};
+```
+- The code above gets the `form` element by id.
+    - Sets an event handler for a submit event.
+    - Event handler calls the method `e.preventDefault()` to prevent default handling of form submit.
+    - The default method would send data to server and cause a new GET request.
+        - Don't want this to happen!
+- The event handler creates a new note.
+- Then adds the note to a list of notes.
+- Rerenders the note list on the page and sends new note to the server.
+- Code for sending note to the server is:
+```javascript
+var sendToServer = function(note) {
+    var xhttpForPost = new XMLHttpRequest();
+    // ...
+
+    xhttpForPost.open('POST', '/new_note_spa', true);
+    xhttpForPost.setRequestHeader(
+        'Content-type', 'application/json'
+    );
+    xhttpForPost.send(JSON.stringify(note));
+};
+```
+- The code above says the data is sent with an HTTP POST request and as JSON.
+    - Data type determined by `Content-Type` header.
+    - Data is then sent as a JSON-string.
+
+
