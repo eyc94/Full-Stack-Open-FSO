@@ -354,3 +354,22 @@ var sendToServer = function(note) {
     - `VueJS` has been capturing some interest.
 
 
+## Full Stack Web Development
+- What is Full Stack Web Development?
+    - Buzzword.
+- All web apps have at least two layers.
+    - The first is the browser that is closer to the end-user. This is the top layer.
+    - The server is the bottom one.
+    - There is also the database layer that is below the server.
+    - The `architecture` of a web app is a `stack` of layers.
+- There is the `frontend` and `backend`.
+    - The browser is the frontend. The JS that runs in the browser is frontend code.
+    - The server is the backend.
+- Fullstack means we focus on all parts of the app.
+    - The frontend, backend, and the database.
+- We code the backend with JS using `Node.js` runtime environment.
+- We will use the same language for all layers of the stack.
+    - This is not a requirement.
+- More common nowadays for developers to be proficient in all layers of the app and database.
+
+
