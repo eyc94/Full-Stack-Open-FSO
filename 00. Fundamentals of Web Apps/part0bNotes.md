@@ -210,3 +210,42 @@ list.appendChild(newElement);
     6. When data is fetched, browser executes an `event handler` that renders the notes to the page using the DOM-API.
 
 
+## Forms and HTTP POST
+- Adding new note.
+- The notes page has a `form` element.
+- When button on form is clicked, the browser will send the user input to the server.
+    - Open `Network` tab and see what it looks like.
+- Submitting a form causes about 5 HTTP requests.
+- Look at the first `new_note` event name.
+    - Notice it's a POST request.
+    - Status is 302.
+    - This is a URL redirect which the server asks the browser to do a new HTTP GET request to the header's `Location`.
+- Browser reloads the Notes page.
+    - The reload causes three more HTTP requests:
+        - Fetching the style sheet.
+        - Fetching the JS code.
+        - Fetching the raw JSON data.
+- Look at `Payload` tab to see the `Form Data` that is submitted with the form.
+- `Form` tag has attributes `action` and `method`.
+    - Basically says that submitting the form is done as an HTTP POST request to the address `new_note`.
+- Code on server handles POST request:
+    - This is code on server, not JS code retrieved by browser.
+```javascript
+app.post('/new_note', (req, res) => {
+    notes.push({
+        content: req.body.note,
+        date: new Date()
+    });
+
+    return res.redirect('/notes');
+});
+```
+- Data is sent as `body` of the POST request.
+    - Server can access data by using `req.body` field of the `req` request object.
+    - Server creates new note object and adds to an array called `notes`.
+- The Note objects have two fields:
+    1. `content` contains the actual content of the note.
+    2. `date` contains the date and time the note was created.
+- Server does not save the new note to a database, so notes disappear after server restarts.
+
+
