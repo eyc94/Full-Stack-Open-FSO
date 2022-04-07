@@ -170,3 +170,32 @@ list.appendChild(newElement);
 - The JS code that is fetched by the browser will always create the list of notes based on JSON-data from `https://studies.cs.helsinki.fi/exampleapp/data.json`.
 
 
+## CSS
+- `head` element of HTML code of notes page has a `link` tag.
+    - Fetch `CSS` style sheet from the address `main.css`.
+- `Cascading Style Sheets` or `CSS` is a style sheet language used for styling a page.
+- The `CSS` file looks like so:
+```css
+.container {
+    padding: 10px;
+    border: 1px solid;
+}
+
+.notes {
+    color: blue;
+}
+```
+- There are two `class selectors`.
+    - Styles certain parts of the page depending on the rules.
+    - Starts with period and has the name of the class.
+    - Classes are attributes added to HTML elements.
+    - CSS attributes can be shown on the `Elements` tab in the console.
+- Outermost `div` element is of class `container`.
+    - This is a 1px wide border.
+    - It sets a 10px `padding` on the element.
+- The `ul` element with list of notes is of class `notes`.
+    - Sets the color of the notes to blue.
+- There are other attributes like `id`.
+    - JS code uses `id` to find element.
+- Changes made on console is not permanent.
+
