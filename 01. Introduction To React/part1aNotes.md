@@ -95,5 +95,6 @@ const App = () => {
     );
 };
 ```
+- JS code in curly braces is evaluated and the result is printed in the place of the curly braces.
 
 
