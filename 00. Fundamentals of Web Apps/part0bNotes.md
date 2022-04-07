@@ -199,3 +199,14 @@ list.appendChild(newElement);
     - JS code uses `id` to find element.
 - Changes made on console is not permanent.
 
+
+## Loading a Page Containing JavaScript - Review
+- Review what happens when page `https://studies.cs.helsinki.fi/exampleapp/notes` is opened.
+    1. Browser fetches the HTML code using HTTP GET request.
+    2. Links in HTML code makes browser fetch CSS style sheet.
+    3. Also gets JS code file.
+    4. Browser executes JS code.
+    5. Code makes HTTP GET request to `/data.json` which returns notes as JSON data.
+    6. When data is fetched, browser executes an `event handler` that renders the notes to the page using the DOM-API.
+
+
