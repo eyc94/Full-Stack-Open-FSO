@@ -131,3 +131,41 @@ const App = () => {
 - For example, `<br>` needs to be written like `<br />`.
 
 
+## Multiple Components
+- Modify `App.js` and note the export statement is left out.
+```javascript
+const Hello = () => {
+    return (
+        <div>
+            <p>Hello world</p>
+        </div>
+    );
+};
+
+const App = () => {
+    return (
+        <div>
+            <h1>Greetings</h1>
+            <Hello />
+        </div>
+    );
+};
+```
+- Defined new `Hello` component and used inside `App` component.
+- Can use this component multiple times:
+```javascript
+const App = () => {
+    return (
+        <div>
+            <h1>Greetings</h1>
+            <Hello />
+            <Hello />
+            <Hello />
+        </div>
+    );
+};
+```
+- Compose apps of many reusable components.
+- Strong convention is having a root component called `App` at the top of the component tree of the application.
+
+
