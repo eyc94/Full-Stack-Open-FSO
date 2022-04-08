@@ -169,3 +169,61 @@ const App = () => {
 - Strong convention is having a root component called `App` at the top of the component tree of the application.
 
 
+## props: Passing Data To Components
+- Pass data to components using `props`.
+- Modify the `Hello` component:
+```javascript
+const Hello = (props) => {
+    return (
+        <div>
+            <p>Hello {props.name}</p>
+        </div>
+    );
+};
+```
+- Function has a parameter called `props`.
+    - Parameter receives an object.
+    - This object has fields corresponding to all the "props" the user of the component defines.
+- The props defined as follows:
+```javascript
+const App = () => {
+    return (
+        <div>
+            <h1>Greetings</h1>
+            <Hello name="George" />
+            <Hello name="Daisy" />
+        </div>
+    );
+};
+```
+- There can be as many props.
+    - Values can be hard-coded or be JS expressions.
+    - Values achieved using JS expressions must be wrapped with curly braces.
+- Modify `Hello` component to use two props:
+```javascript
+const Hello = (props) => {
+    return (
+        <div>
+            <p>
+                Hello {props.name}, you are {props.age} years old
+            </p>
+        </div>
+    );
+};
+
+const App = () => {
+    const name = 'Peter';
+    const age = 10;
+
+    return (
+        <div>
+            <h1>Greetings</h1>
+            <Hello name="Maya" age={26 + 10} />
+            <Hello name={name} age={age} />
+        </div>
+    );
+};
+```
+- As you can see, we pass hard-coded strings, result of expressions, and variables inside curly braces.
+
+
