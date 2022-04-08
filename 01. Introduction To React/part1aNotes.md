@@ -212,7 +212,7 @@ const Hello = (props) => {
 };
 
 const App = () => {
-    const name = 'Peter';
+    const name = "Peter";
     const age = 10;
 
     return (
@@ -226,4 +226,39 @@ const App = () => {
 ```
 - As you can see, we pass hard-coded strings, result of expressions, and variables inside curly braces.
 
+
+## Some Notes
+- React gives clear error messages.
+- Work in small steps.
+- Console should be open.
+- If you encounter errors, go back. Don't continue.
+- Write `console.log()` commands.
+- React component names **must** be capitalized.
+- Content of a React component needs to contain **one root element**.
+    - Can also use an `array` of components.
+```javascript
+const App = () => {
+    return [
+        <h1>Greetings</h1>,
+        <Hello name="Maya" age={26 + 10} />,
+        <Footer />
+    ];
+};
+```
+- Not wise however.
+- Can use `fragments` by wrapping elements to be returned with an empty element.
+```javascript
+const App = () => {
+    const name = "Peter";
+    const age = 10;
+
+    return (
+        <>
+            <h1>Greetings</h1>
+            <Hello name="Maya" age={26 + 10} />
+            <Hello name={name} age={age} />
+        </>
+    );
+};
+```
 
