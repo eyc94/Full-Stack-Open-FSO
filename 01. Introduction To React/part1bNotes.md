@@ -17,3 +17,28 @@
     - Opened by typing `node` in command line and dev tools.
 
 
+## Variables
+- Few ways to define variables.
+```javascript
+const x = 1;
+let y = 5;
+
+console.log(x, y);      // 1, 5 are printed.
+y += 10;
+console.log(x, y);      // 1, 15 are printed.
+y = 'sometext';
+console.log(x, y);      // 1, sometext are printed.
+x = 4;                  // causes an error.
+```
+- `const` defines a constant that cannot be changed once assigned.
+- `let` defines a normal variable.
+- Type of variable can be changed during execution.
+    - `y` stores an integer at first before it changes to a string.
+- Can create variables using `var`.
+    - Use of `var` is ill-advised and should use `let` and `const` only.
+- See more information about it:
+    - Javascript variables; should you use let, var or const?: `https://medium.com/podiihq/javascript-variables-should-you-use-let-var-or-const-394f7645c88f`
+    - ES6, var vs let: `https://www.jstips.co/en/javascript/keyword-var-vs-let/`
+    - var, let and const - What, why and how - ES6 JavaScript Features: `https://www.youtube.com/watch?v=sjyJBL5fkp8`
+
+
