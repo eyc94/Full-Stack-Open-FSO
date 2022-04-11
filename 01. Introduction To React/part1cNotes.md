@@ -50,3 +50,76 @@ const Hello = (props) => {
 - Notice also we define a function in a function, which is common in JS.
 
 
+## Destructuring
+- Can destructure values from objects upon assignment.
+- We previously referenced data like `props.name` and `props.age`.
+- We know `props` is an object.
+```javascript
+props = {
+    name: "Arto Hellas",
+    age: 35
+};
+```
+- Can assign values of properties directly into variables `name` and `age`:
+```javascript
+const Hello = (props) => {
+    const name = props.name;
+    const age = props.age;
+
+    const bornYear = () => new Date().getFullYear() - age;
+
+    return (
+        <div>
+            <p>Hello {name}, you are {age} years old</p>
+            <p>So you were probably born in {bornYear()}</p>
+        </div>
+    );
+};
+```
+- Notice the compact form of the arrow function.
+- Two function definitions below are the same:
+```javascript
+const bornYear = () => new Date().getFullYear() - age;
+
+const bornYear = () => {
+    return new Date().getFullYear() - age;
+};
+```
+- Now we destructure:
+```javascript
+const Hello = (props) => {
+    const { name, age } = props;
+    const bornYear = () => new Date().getFullYear() - age;
+
+    return (
+        <div>
+            <p>Hello {name}, you are {age} years old</p>
+            <p>So you were probably born in {bornYear()}</p>
+        </div>
+    );
+};
+```
+- If the object has the values below:
+```javascript
+props = {
+    name: "Arto Hellas",
+    age: 35
+};
+```
+- The expressions `const { name, age } = props` assigns "Arto Hellas" to `name` and 35 to `age`.
+- Take destructuring a step further:
+```javascript
+const Hello = ({ name, age }) => {
+    const bornYear = () => new Date().getFullYear() - age;
+
+    return (
+        <div>
+            <p>Hello {name}, you are {age} years old</p>
+            <p>So you were probably born in {bornYear()}</p>
+        </div>
+    );
+};
+```
+- We destructure directly in the definition of the component.
+
+
