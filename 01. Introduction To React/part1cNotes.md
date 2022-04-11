@@ -123,3 +123,63 @@ const Hello = ({ name, age }) => {
 - We destructure directly in the definition of the component.
 
 
+## Page Re-rendering
+- Our app just stays static.
+- What if we wanted a counter where the value increased as a function of time?
+- Change `App.js`:
+```javascript
+const App = (props) => {
+    const { counter } = props;
+    return (
+        <div>{counter}</div>
+    );
+};
+
+export default App;
+```
+- Change `index.js`:
+```javascript
+import ReactDOM from 'react-dom';
+import App from './App';
+
+let counter = 1;
+
+ReactDOM.render(
+    <App counter={counter} />,
+    document.getElementById('root')
+);
+```
+- Changes to `index.js` does not automatically reload the page, so refresh the browser.
+- `App` is given the value of `counter`.
+- The value is rendered to the screen.
+- Even if we changed the `counter` value by 1, the component does not re-render.
+- We can re-render it by calling the `ReactDOM.render` method a second time:
+```javascript
+let counter = 1;
+
+const refresh = () => {
+    ReactDOM.render(
+        <App counter={counter} />,
+        document.getElementById('root')
+    );
+};
+
+refresh();
+counter += 1;
+refresh();
+counter += 1;
+refresh();
+```
+- The re-render function is stored in the `refresh` function.
+- Component now renders 3 times with 1, 2, then 3.
+    - However, 1 and 2 are only shown really quickly, so you cannot see it fast enough.
+- We can instead use `setInterval` to make it increment counter and refresh every 1 second.
+```javascript
+setInterval(() => {
+    refresh();
+    counter += 1;
+}, 1000);
+```
+- However, repeatedly calling `ReactDOM.render` is NOT recommended.
+
+
