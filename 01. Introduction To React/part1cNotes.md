@@ -255,3 +255,83 @@ const App = () => {
 ```
 
 
+## Event Handling
+- A user's actions can cause events to be triggered.
+- Change the app so that the counter value changes when a user clicks a button.
+    - Done with `button` element.
+- Button elements support `mouse events`.
+    - `click` is the most common.
+- The click event on a button can be triggered with keyboard or touch screen.
+- In React, registering event handler is done like so:
+```javascript
+const App = () => {
+    const [ counter, setCounter ] = useState(0);
+
+    const handleClick = () => {
+        console.log("clicked");
+    };
+
+    return (
+        <div>
+            <div>{counter}</div>
+            <button onClick={handleClick}>
+                plus
+            </button>
+        </div>
+    );
+};
+```
+- Set value of `onClick` attribute of the `button` element to be a reference to the `handleClick` function that is defined.
+- Every click of the button causes the `handleClick` function to be called.
+    - Log a message to the console.
+- Event handler function can also be defined directly in the value.
+```javascript
+const App = () => {
+    const [ counter, setCounter ] = useState(0);
+
+    return (
+        <div>
+            <div>{counter}</div>
+            <button onClick={() => console.log("clicked")}>
+                plus
+            </button>
+        </div>
+    );
+};
+```
+- Change to below:
+```javascript
+const App = () => {
+    const [ counter, setCounter ] = useState(0);
+
+    return (
+        <div>
+            <div>{counter}</div>
+            <button onClick={() => setCounter(counter + 1)}>
+                plus
+            </button>
+        </div>
+    );
+};
+```
+- The value of `counter` is increased by 1 when button is clicked and component is re-rendered.
+- Add a button for resetting.
+```javascript
+const App = () => {
+    const [ counter, setCounter ] = useState(0);
+
+    return (
+        <div>
+            <div>{counter}</div>
+            <button onClick={() => setCounter(counter + 1)}>
+                plus
+            </button>
+            <button onClick={() => setCounter(0)}>
+                zero
+            </button>
+        </div>
+    );
+};
+```
+
+
