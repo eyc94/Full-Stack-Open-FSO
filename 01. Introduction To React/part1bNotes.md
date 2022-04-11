@@ -302,3 +302,32 @@ setTimeout(arto.greet.bind(arto), 1000);
     - `https://egghead.io/courses/understand-javascript-s-this-keyword-in-depth`
 
 
+## Classes
+- No classes in JS, but we can simulate it.
+- Define a class called `Person` and two Person objects:
+```javascript
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    };
+
+    greet() {
+        console.log("Hello, my name is " + this.name);
+    };
+};
+
+const adam = new Person("Adam Ondra", 35);
+adam.greet();
+
+const janja = new Person("Janja Garnbret", 22);
+janja.greet();
+```
+- Reminiscent of Java.
+- Type of both objects is actually `Object`.
+- JS only defines the types:
+    - Boolean, Null, Undefined, Number, String, Symbol, BigInt, and Object.
+- This class syntax is used in old React and in Node.js.
+- Using `Hooks` because we are not using JS class syntax in this course.
+
+
