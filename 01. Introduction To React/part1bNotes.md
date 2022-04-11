@@ -331,3 +331,11 @@ janja.greet();
 - Using `Hooks` because we are not using JS class syntax in this course.
 
 
+## JavaScript Materials
+- There are many good and bad resources.
+- Check out Mozilla's JS Guide.
+- Read `A re-introduction to JavaScript (JS tutorial)` on Mozilla's site.
+- Read the `You-Dont-Know-JS` series.
+- Another good one is `javascript.info`.
+- `egghead.io` is good too.
+
