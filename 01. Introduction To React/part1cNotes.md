@@ -26,3 +26,27 @@ const App = () => {
 ```
 
 
+## Component Helper Functions
+- Expand `Hello` component so it guesses the year of birth of person being greeted:
+```javascript
+const Hello = (props) => {
+    const bornYear = () => {
+        const yearNow = new Date().getFullYear();
+        return yearNow - props.age;
+    };
+
+    return (
+        <div>
+            <p>
+                Hello {props.name}, you are {props.age} years old
+            </p>
+            <p>So you were probably born in {bornYear()}</p>
+        </div>
+    );
+};
+```
+- Logic is in a separate function as you can see.
+- Notice the function can directly access the `props` input.
+- Notice also we define a function in a function, which is common in JS.
+
+
