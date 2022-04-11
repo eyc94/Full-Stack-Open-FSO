@@ -183,3 +183,75 @@ setInterval(() => {
 - However, repeatedly calling `ReactDOM.render` is NOT recommended.
 
 
+## Stateful Component
+- Our components have no state that can change during the lifecycle of the component.
+- Add state to `App` component with React's `state hook`.
+- Change `index.js` back to:
+```javascript
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDom.render(
+    <App />,
+    document.getElementById('root')
+);
+```
+- Change `App.js` to:
+```javascript
+import { useState } from 'react';
+
+const App = () => {
+    const [ counter, setCounter ] = useState(0);
+
+    setTimeout(
+        () => setCounter(counter + 1),
+        1000
+    );
+
+    return (
+        <div>{counter}</div>
+    );
+};
+
+export default App;
+```
+- The file imports the `useState` function.
+- The function body starts with a function call:
+```javascript
+const [ counter, setCounter ] = useState(0);
+```
+- Function call adds state to component and renders it initialized with the value of 0.
+    - Returns array with two items.
+    - Assign items to variables `counter` and `setCounter`.
+    - Uses `destructuring`.
+- The `counter` is assigned an initial value of 0.
+- The `setCounter` is assigned a function that modifies the state.
+- App calls `setTimeout` and passes two parameters:
+    - A function to increment the counter state.
+    - A timeout of 1 second.
+- Function that is passed to `setTimeout` is called 1 second after calling `setTimeout`.
+- When state is modified, React re-renders the component.
+    - Function body of component gets re-executed.
+    - During the second call of the function body, `useState` is called with the value of 1.
+    - The `setTimeout` is called again while incrementing the counter to 2.
+    - Meanwhile the counter value of 1 is rendered.
+- Process repeats until app is killed.
+- Can debug using logs to see when the render happens.
+```javascript
+const App = () => {
+    const [ counter, setCounter ] = useState(0);
+
+    setTimeout(
+        () => setCounter(counter + 1),
+        1000
+    );
+
+    console.log('rendering...', counter);
+
+    return (
+        <div>{counter}</div>
+    );
+};
+```
+
+
