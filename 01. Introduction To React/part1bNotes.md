@@ -153,3 +153,60 @@ object1["secret number"] = 12341;
 - Version ES6 has addition of class syntax.
 
 
+## Functions
+- We have used arrow functions.
+- Complete process to defining an arrow function is:
+```javascript
+const sum = (p1, p2) => {
+    console.log(p1);
+    console.log(p2);
+    return p1 + p2;
+};
+```
+- Call the function:
+```javascript
+const result = sum(1, 5);
+console.log(result);            // 6 is printed.
+```
+- If there is one parameter, we can get rid of the parentheses:
+```javascript
+const square = p => {
+    console.log(p);
+    return p * p;
+};
+```
+- If the function only has one expression, braces are not needed.
+```javascript
+const square = p => p * p;
+```
+- Handy when manipulating arrays:
+```javascript
+const t = [1, 2, 3];
+const tSquared = t.map(p => p * p);
+// tSquared is now [1, 4, 9].
+```
+- Arrow functions only recently got introduced.
+- Had to use the `function` keyword.
+- Two ways to reference the function.
+- The first is to give a name in a `function declaration`:
+```javascript
+function product(a, b) {
+    return a * b;
+};
+
+const result = product(2, 6);
+// result is now 12.
+```
+- The other way is using a `function expression`:
+    - No need to give function a name.
+```javascript
+const average = function(a, b) {
+    return (a + b) / 2;
+}
+
+const result = average(2, 5);
+// result is now 3.5.
+```
+- This course uses arrow syntax.
+
+
