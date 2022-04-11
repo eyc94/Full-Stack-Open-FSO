@@ -210,3 +210,95 @@ const result = average(2, 5);
 - This course uses arrow syntax.
 
 
+## Object Methods and "this"
+- Using React Hooks in this course, so we have no need to define objects with methods.
+- Using older versions of React requires us to know this section.
+- Arrow functions and functions defined using `function` keyword differ when using the `this` keyword.
+    - `this` refers to the object itself.
+- Assign methods to an object by defining properties that are functions:
+```javascript
+const arto = {
+    name: "Arto Hellas",
+    age: 35,
+    education: "PhD",
+    greet: function() {
+        console.log("Hello, my name is " + this.name);
+    }
+};
+
+arto.greet();       // "Hello, my name is Arto Hellas" gets printed.
+```
+- Methods can be added to objects after object creation:
+```javascript
+const arto = {
+    name: "Arto Hellas",
+    age: 35,
+    education: "PhD",
+    greet: function() {
+        console.log("Hello, my name is " + this.name);
+    }
+};
+
+arto.growOlder = function() {
+    this.age += 1;
+};
+
+console.log(arto.age);          // 35 is printed.
+arto.growOlder();
+console.log(arto.age);          // 36 is printed.
+```
+- Modify object a little bit:
+```javascript
+const arto = {
+    name: "Arto Hellas",
+    age: 35,
+    education: "PhD",
+    greet: function() {
+        console.log("Hello, my name is " + this.name);
+    },
+    doAddition: function(a, b) {
+        console.log(a + b);
+    }
+};
+
+arto.doAddition(1, 4);          // 5 is printed.
+
+const referenceToAddition = arto.doAddition;
+referenceToAddition(10, 15);    // 25 is printed.
+```
+- Our object has a method called `doAddition`.
+- We can call it like usual or have a method reference point to it and call it by the reference.
+- If we try to use the method `greet` we have a problem though.
+```javascript
+arto.greet();               // "Hello, my name is Arto Hellas" gets printed.
+
+const referenceToGreet = arto.greet;
+referenceToGreet();         // "Hello, my name is undefined" gets printed.
+```
+- Up above, the `greet` method loses knowledge of what the `this` was.
+    - The `this` now becomes the global object.
+- Avoid this issue by not using `this` at all in JS.
+- One situation of this issue happens in `setTimeout` to `greet` function on `arto` object.
+```javascript
+const arto = {
+    name: "Arto Hellas",
+    greet: function() {
+        console.log("Hello, my name is " + this.name);
+    }
+};
+
+setTimeout(arto.greet, 1000);
+```
+- Value of `this` is defined based on how the method is called.
+- The `setTimeout` makes the JS engine call the method.
+    - This means `this` refers to the global object.
+- Original `this` can be preserved using a method called `bind`.
+```javascript
+setTimeout(arto.greet.bind(arto), 1000);
+```
+- Calling `arto.greet.bind(arto)` creates a new function where `this` points to `arto`.
+    - Independent on the method of call.
+- More information on `this`:
+    - `https://egghead.io/courses/understand-javascript-s-this-keyword-in-depth`
+
+
