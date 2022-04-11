@@ -106,3 +106,50 @@ console.log(rest);              // [3, 4, 5] is printed.
 - Remaining integers are "collected" into an array of their own which is assigned to `rest`.
 
 
+## Objects
+- Different ways of defining objects in JS.
+    - One is to use `object literals`.
+        - List properties within braces.
+```javascript
+const object1 = {
+    name: "Arto Hellas",
+    age: 35,
+    education: "PhD"
+};
+
+const object2 = {
+    name: "Full Stack Web Application Development",
+    level: "intermediate studies",
+    size: 5
+};
+
+const object3 = {
+    name: {
+        first: "Dan",
+        last: "Abramov"
+    },
+    grades: [2, 3, 5, 3],
+    department: "Stanford University"
+};
+```
+- Values of properties can be of any type.
+    - It can be integers, strings, arrays, objects, etc.
+- Properties of objects accessed with dot notation or brackets.
+```javascript
+console.log(object1.name);          // Arto Hellas is printed.
+const fieldName = "age";
+console.log(object1[fieldName]);    // 35 is printed.
+```
+- Add properties to objects using dot notation or brackets.
+```javascript
+object1.address = "Helsinki";
+object1["secret number"] = 12341;
+```
+- Notice the last line has to be done using brackets because there is a space.
+- Objects can also have methods.
+    - In this course, we don't need to define objects with methods.
+- Objects can be defined using constructor functions.
+- JS does not have classes like other OOP languages.
+- Version ES6 has addition of class syntax.
+
+
