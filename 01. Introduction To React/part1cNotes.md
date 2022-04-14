@@ -478,3 +478,37 @@ const App = () => {
     - This causes subcomponents to rerender as well with new state values.
 
 
+## Refactoring The Components
+- Destructure the `props` for `Display` component because it only uses the `counter` field of its `props`.
+```javascript
+const Display = ({ counter }) => {
+    return (
+        <div>{counter}</div>
+    );
+};
+```
+- Function defining component only has one return statement, so we can simplify further:
+```javascript
+const Display = ({ counter }) => <div>{counter}</div>
+```
+- Simplify `Button` as well.
+```javascript
+const Button = (props) => {
+    return (
+        <button onClick={props.onClick}>
+            {props.text}
+        </button>
+    );
+};
+```
+- Use destructuring:
+```javascript
+const Button = ({ onClick, text }) => {
+    return (
+        <button onClick={onClick}>
+            {text}
+        </button>
+    );
+};
+```
+
