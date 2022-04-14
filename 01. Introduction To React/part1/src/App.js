@@ -25,6 +25,14 @@ const Display = (props) => {
     );
 };
 
+const Button = (props) => {
+    return (
+        <button onClick={props.onClick}>
+            {props.text}
+        </button>
+    );
+};
+
 // const Hello = ({ name, age }) => {
 //     const bornYear = () => new Date().getFullYear() - age;
 
