@@ -36,3 +36,112 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 ```
 
 
+## Complex State
+- What if app requires more complex state.
+- It was an integer before.
+- Best way is to create separate pieces of state by using `useState` multiple times.
+- The following has two pieces of state for `left` and `right` with initial value of 0.
+```javascript
+const App = () => {
+    const [left, setLeft] = useState(0);
+    const [right, setRight] = useState(0);
+
+    return (
+        <div>
+            {left}
+            <button onClick={() => setLeft(left + 1)}>
+                left
+            </button>
+            <button onClick={() => setRight(right + 1)}>
+                right
+            </button>
+            {right}
+        </div>
+    );
+};
+```
+- Can update the states with the functions `setLeft` and `setRight`.
+- The piece of state can by any type.
+- Can implement the same function with an object with properties `left` and `right`:
+```javascript
+{
+    left: 0,
+    right: 0
+}
+```
+- The App would look like:
+```javascript
+const App = () => {
+    const [clicks, setClicks] = useState({
+        left: 0, right: 0
+    });
+
+    const handleLeftClick = () => {
+        const newClicks = {
+            left: clicks.left + 1,
+            right: clicks.right
+        };
+        setClicks(newClicks);
+    };
+
+    const handleRightClick = () => {
+        const newClicks = {
+            left: clicks.left,
+            right: clicks.right + 1
+        };
+        setClicks(newClicks);
+    };
+
+    return (
+        <div>
+            {clicks.left}
+            <button onClick={handleLeftClick}>left</button>
+            <button onClick={handleRightClick}>right</button>
+            {clicks.right}
+        </div>
+    );
+};
+```
+- Now app has single state and event handlers take care of changing the app state.
+- Event handlers are messy.
+    - Can define the new state object more neatly with `object spread` syntax:
+```javascript
+const handleLeftClick = () => {
+    const newClicks = {
+        ...clicks,
+        left: clicks.left + 1
+    };
+    setClicks(newClicks);
+};
+
+const handleRightClick = () => {
+    const newClicks = {
+        ...clicks,
+        right: clicks.right + 1
+    };
+    setClicks(newClicks);
+};
+```
+- The `{ ...clicks }` creates a new object with copies of the properties of the `clicks` object.
+- If we do `{ ...clicks, right: 1 }`, the value of `right` will be 1 in the new object.
+- Basically, `{ ...clicks, right: clicks.right + 1 }` creates a copy of `clicks` object where the value of `right` is increased by 1.
+- Don't need to assign new object to variable.
+- Simplify like so:
+```javascript
+const handleLeftClick = () => setClicks({ ...clicks, left: clicks.left + 1 });
+const handleRightClick = () => setClicks({ ...clicks, right: clicks.right + 1 });
+```
+- Why didn't we just update state directly?
+```javascript
+const handleLeftClick = () => {
+    clicks.left++;
+    setClicks(clicks);
+};
+```
+- It is *forbidden* to mutate state directly!
+- Changing state has to be done by setting the state to a **new** object.
+- If properties of object did not change, just copy to a new object.
+- This is why storing all state in a single state object is bad!
+- Storing click counter into separate `left` and `right` states is better!
+
+
