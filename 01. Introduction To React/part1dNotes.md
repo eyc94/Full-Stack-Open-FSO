@@ -185,3 +185,82 @@ const App = () => {
 - The `join` method is called on `allClicks` that joins all items in a single string separated by a space.
 
 
+## Conditional Rendering
+- Modify so rendering of history is handled by a `History` component:
+```javascript
+const History = (props) => {
+    if (props.allClicks.length === 0) {
+        return (
+            <div>
+                the app is used by pressing the buttons
+            </div>
+        );
+    }
+
+    return (
+        <div>
+            button press history: {props.allClicks.join(' ')}
+        </div>
+    );
+};
+
+const App = () => {
+    // ...
+
+    return (
+        <div>
+            {left}
+            <button onClick={handleLeftClick}>left</button>
+            <button onClick={handleRightClick}>right</button>
+            {right}
+            <History allClicks={allClicks} />
+        </div>
+    );
+};
+```
+- Behavior depends on whether the buttons have been clicked.
+- If buttons have not been clicked, the `allClicks` array is empty.
+    - The component renders a `div` with instructions.
+- Otherwise, it renders the clicking history.
+- This is called `conditional rendering`.
+    - There are other ways to conditionally render something.
+- Make one more modification to app by refactoring it to use `Button` component:
+```javascript
+const History = (props) => {
+    if (props.allClicks.length === 0) {
+        return (
+            <div>
+                the app is used by pressing the buttons
+            </div>
+        );
+    }
+
+    return (
+        <div>
+            button press history: {props.allClicks.join(' ')}
+        </div>
+    );
+};
+
+const Button = ({ handleClick, text }) => {
+    <button onClick={handleClick}>
+        {text}
+    </button>
+};
+
+const App = () => {
+    // ...
+
+    return (
+        <div>
+            {left}
+            <Button handleClick={handleLeftClick} text="left" />
+            <Button handleClick={handleRightClick} text="right" />
+            {right}
+            <History allClicks={allClicks} />
+        </div>
+    );
+};
+```
+
+
