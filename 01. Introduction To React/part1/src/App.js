@@ -26,9 +26,9 @@ const App = () => {
     );
 };
 
-const Display = (props) => {
+const Display = ({ counter }) => {
     return (
-        <div>{props.counter}</div>
+        <div>{counter}</div>
     );
 };
 
