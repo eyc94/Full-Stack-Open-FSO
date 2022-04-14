@@ -264,3 +264,10 @@ const App = () => {
 ```
 
 
+## Old React
+- We use state hooks in new React.
+- In old React, we use `class` components to define state.
+    - Use JS class syntax.
+- Should learn class syntax for legacy React code that's still out there.
+
+
