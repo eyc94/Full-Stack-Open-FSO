@@ -145,3 +145,43 @@ const handleLeftClick = () => {
 - Storing click counter into separate `left` and `right` states is better!
 
 
+## Handling Arrays
+- Add state containing an array called `allClick` that keeps track of every click that occurred in the app:
+```javascript
+const App = () => {
+    const [left, setLeft] = useState(0);
+    const [right, setRight] = useState(0);
+    const [allClick, setAll] = useState([]);
+
+    const handleLeftClick = () => {
+        setAll(allClicks.concat('L'));
+        setLeft(left + 1);
+    };
+
+    const handleRightClick = () => {
+        setAll(allClicks.concat('R'));
+        setRight(right + 1);
+    };
+
+    return (
+        <div>
+            {left}
+            <button onClick={handleLeftClick}>left</button>
+            <button onClick={handleRightClick}>right</button>
+            {right}
+            <p>{allClicks.join(' ')}</p>
+        </div>
+    );
+};
+```
+- Clicks are stored in the array.
+    - Initialized as empty.
+- Clicking the left button causes the `L` to be added to `allClicks` array.
+- The state stored in `allClicks` is an array with all previous states plus `L`.
+    - Adding new item is done with `concat`.
+    - It does not mutate the state directly.
+    - It creates a new copy of the array with the item added to it.
+- Do NOT use the `push` method because it mutates the state directly.
+- The `join` method is called on `allClicks` that joins all items in a single string separated by a space.
+
+
