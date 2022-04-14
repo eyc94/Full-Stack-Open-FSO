@@ -465,3 +465,16 @@ const App = () => {
     - React tutorial, however, suggests it.
 
 
+## Changes In State Cause Rerendering
+- Go over how an app works again.
+- When app starts, code in `App` is run.
+- Code uses `useState` hook to create app state.
+    - Sets `counter` to 0.
+- Contains `Display` and `Button` components that have values and properties passed down to them.
+- When a button is clicked, the event handler is called.
+    - Changes the state of the `App` component.
+    - Calling a function which changes the state causes the component to rerender.
+- If `plus` is pressed, `counter` is 1 and the app is rerendered with the counter value of 1.
+    - This causes subcomponents to rerender as well with new state values.
+
+
