@@ -319,3 +319,70 @@ const App = () => {
 ```
 
 
+## Event Handling Revisited
+- Revisiting topic.
+- Assume we are developing this simple app with `App` component:
+```javascript
+const App = () => {
+    const [value, setValue] = useState(10);
+
+    return (
+        <div>
+            {value}
+            <button>reset to zero</button>
+        </div>
+    );
+};
+```
+- Want to reset state when button is clicked.
+    - Need to add an event handler to it.
+- Event handlers must be a `function` or a `reference to a function`.
+    - Otherwise if it is any other type, it will not work!
+```javascript
+<button onClick={console.log("clicked the button")}>
+    button
+</button>
+```
+- It logs once when the component is rendered.
+- Nothing happens when we click the button. Why?
+    - This is because the event handler above is a `function call`.
+    - This means the event handler is actually assigned the return value of the function, `undefined`.
+```javascript
+<button onClick={setValue(0)}>button</button>
+```
+- The code above causes an infinite recursion.
+    - This is because calling `setValue()` causes rerendering of the component.
+    - This calls the function again which causes rerendering over and over.
+- The proper way is below:
+```javascript
+<button onClick={() => console.log("clicked the button")}>
+    button
+</button>
+```
+- Resetting function is done:
+```javascript
+<button onClick={() => setValue(0)}>
+    button
+</button>
+```
+- Defining event handlers inside the attribute is not good practice:
+- Best to define somewhere else.
+```javascript
+const App = () => {
+    const [value, setValue] = useState(10);
+
+    const handleClick = () => {
+        console.log("Clicked the button");
+        setValue(0);
+    };
+
+    return (
+        <div>
+            {value}
+            <button onClick={handleClick}>button</button>
+        </div>
+    );
+};
+```
+
+
