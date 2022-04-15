@@ -386,3 +386,116 @@ const App = () => {
 ```
 
 
+## Function That Returns A Function
+- Another way to define an event handler is to use a function that returns a function.
+- Make the changes:
+```javascript
+const App = () => {
+    const [value, setValue] = useState(10);
+
+    const hello = () => {
+        const handler = () => console.log("Hello World");
+        return handler;
+    };
+
+    return (
+        <div>
+            {value}
+            <button onClick={hello()}>button</button>
+        </div>
+    );
+};
+```
+- Why does this work? Thought you couldn't call a function in event handlers.
+- When the component gets rendered, it calls the function.
+- The return value is another function.
+- Basically, the event handler is now a function definition.
+- What's the point?
+- Change it up a little bit:
+```javascript
+const App = () => {
+    const [value, setValue] = useState(10);
+
+    const hello = (who) => {
+        const handler = () => {
+            console.log("Hello", who);
+        };
+        return handler;
+    };
+
+    return (
+        <div>
+            {value}
+            <button onClick={hello("world")}>button</button>
+            <button onClick={hello("react")}>button</button>
+            <button onClick={hello("function")}>button</button>
+        </div>
+    );
+};
+```
+- The `hello` function can be thought of as a factory that produces customized event handlers.
+- Slightly verbose `hello` function, so refactor it.
+```javascript
+const hello = (who) => {
+    return () => {
+        console.log("Hello", who);
+    };
+};
+```
+- Single return statement, so:
+```javascript
+const hello = (who) => 
+    () => {
+        console.log("Hello", who);
+    };
+```
+- Write all arrows on the same line:
+```javascript
+const hello = (who) => () => {
+    console.log("Hello", who);
+};
+```
+- Can use this trick to define event handlers that set state of component to a given value.
+```javascript
+const App = () => {
+    const [value, setValue] = useState(10);
+
+    const setToValue = (newValue) => () => {
+        console.log("value now", newValue);
+        setValue(newValue);
+    };
+
+    return (
+        <div>
+            {value}
+            <button onClick={setToValue(1000)}>thousand</button>
+            <button onClick={setToValue(0)}>reset</button>
+            <button onClick={setToValue(value + 1)}>increment</button>
+        </div>
+    );
+};
+```
+- When component is rendered, the buttons are created and the `setToValue` functions are called returning functions that are set as the event handlers of those buttons.
+- Let's go back to the traditional way of defining event handlers.
+- This time clicking the button causes a function to be called that calls multiple functions:
+```javascript
+const App = () => {
+    const [value, setValue] = useState(10);
+
+    const setToValue = (newValue) => {
+        console.log("value now", newValue);
+        setValue(newValue);
+    };
+
+    return (
+        <div>
+            {value}
+            <button onClick={() => setToValue(1000)}>thousand</button>
+            <button onClick={() => setToValue(0)}>reset</button>
+            <button onClick={() => setToValue(value + 1)}>increment</button>
+        </div>
+    );
+};
+```
+
+
