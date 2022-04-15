@@ -536,3 +536,66 @@ const App = () => {
 ```
 
 
+## Do Not Define Components Within Components
+- Display value of app into its own `Display` component.
+- Change the app by defining new component inside `App`.
+```javascript
+// This is the right place to define component.
+const Button = (props) => {
+    <button onClick={props.handleClick}>
+        {props.text}
+    </button>
+};
+
+const App = () => {
+    const [value, setValue] = useState(10);
+
+    const setToValue = (newValue) => {
+        console.log("value now", newValue);
+        setValue(newValue);
+    };
+
+    // Do not define components inside another component.
+    const Display = props => <div>{props.value}</div>;
+
+    return (
+        <div>
+            {value}
+            <Button handleClick={() => setToValue(1000)} text="thousand" />
+            <Button handleClick={() => setToValue(0)} text="reset" />
+            <Button handleClick={() => setToValue(value + 1)} text="increment" />
+        </div>
+    );
+};
+```
+- Instead move the `Display` component function to the correct place.
+    - Outside of the `App`.
+```javascript
+const Display = props => <div>{props.value}</div>;
+
+const Button = (props) => {
+    <button onClick={props.handleClick}>
+        {props.text}
+    </button>
+};
+
+const App = () => {
+    const [value, setValue] = useState(10);
+
+    const setToValue = (newValue) => {
+        console.log("value now", newValue);
+        setValue(newValue);
+    };
+
+    return (
+        <div>
+            {value}
+            <Button handleClick={() => setToValue(1000)} text="thousand" />
+            <Button handleClick={() => setToValue(0)} text="reset" />
+            <Button handleClick={() => setToValue(value + 1)} text="increment" />
+        </div>
+    );
+};
+```
+
+
