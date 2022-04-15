@@ -287,3 +287,35 @@ const App = () => {
     - Shows the state of hooks in the order of their definition.
 
 
+## Rules of Hooks
+- `useState` and `useEffect` functions cannot be called in a loop, a conditional expression, or any place that is not a function defining a component.
+    - Because we need to ensure the hooks are called in the same order.
+- Example of okay and not okay below:
+```javascript
+const App = () => {
+    // These are okay.
+    const [age, setAge] = useState(0);
+    const [name, setName] = useState("Juha Tauriainen");
+
+    // This does not work!
+    if (age > 10) {
+        const [foobar, setFoobar] = useState(null);
+    }
+
+    // This is not good!
+    for (let i = 0; i < age; i++) {
+        const [rightWay, setRightWay] = useState(false);
+    }
+
+    const notGood = () => {
+        // This is also illegal!
+        const [x, setX] = useState(-1000);
+    };
+
+    return (
+        // ...
+    );
+};
+```
+
+
