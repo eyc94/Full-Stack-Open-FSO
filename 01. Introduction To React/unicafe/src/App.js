@@ -38,6 +38,20 @@ const App = () => {
     const average = (total === 0) ? 0 : (good - bad) / total;
     const positive = (total === 0) ? 0 : good / total;
 
+    if (total === 0) {
+        return (
+            <div>
+                <h2>Give Feedback</h2>
+                <button onClick={handleGood}>good</button>
+                <button onClick={handleNeutral}>neutral</button>
+                <button onClick={handleBad}>bad</button>
+
+                <h2>Statistics</h2>
+                <div>No feedback is given</div>
+            </div>
+        );
+    }
+
     return (
         <div>
             <h2>Give Feedback</h2>
