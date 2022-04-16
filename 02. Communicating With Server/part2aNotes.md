@@ -225,3 +225,24 @@ const result = notes.map(note => note.content);
 ```
 
 
+## Anti-Pattern: Array Indexes As Keys
+- Can use array indexes as keys instead.
+    - Can be retrieved by passing a second parameter to the callback function:
+```javascript
+notes.map((note, i) => ...);
+```
+- Here, `i` is the index.
+- One way to define the row generation without errors is:
+```javascript
+<ul>
+    {notes.map((note, i) =>
+        <li key={i}>
+            {note.content}
+        </li>
+    )}
+</ul>
+```
+- Not recommended!
+- Read about it here: `https://robinpokorny.medium.com/index-as-a-key-is-an-anti-pattern-e0349aece318`
+
+
