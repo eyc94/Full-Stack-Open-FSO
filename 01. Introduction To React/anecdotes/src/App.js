@@ -12,7 +12,9 @@ const App = () => {
     ];
 
     const [selected, setSelected] = useState(0);
-    const [points, setPoints] = useState([0, 0, 0, 0, 0, 0, 0]);
+    // More dynamic way of setting state.
+    const [points, setPoints] = useState(new Array(anecdotes.length).fill(0));
+    // const [points, setPoints] = useState([0, 0, 0, 0, 0, 0, 0]);
 
     const handleNextAnecdote = () => {
         let randomNum = Math.floor((Math.random() * anecdotes.length));
