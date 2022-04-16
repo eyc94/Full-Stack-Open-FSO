@@ -320,3 +320,7 @@ const App = ({ notes }) => {
 - Extension `.js` can be excluded when importing.
 
 
+## When The Application Breaks
+- Remember the debugging tips!
+
+
