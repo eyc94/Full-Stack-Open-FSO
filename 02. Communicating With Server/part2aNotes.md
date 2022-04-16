@@ -173,3 +173,55 @@ export default App;
 - React uses the key to determine how to update a view when the component is re-rendered.
 
 
+## Map
+- Understanding how `map` works is important.
+- App contains an array called `notes`.
+```javascript
+const notes = [
+    {
+        id: 1,
+        content: "HTML is easy",
+        date: "2019-05-30T17:30:31.098Z",
+        important: true
+    },
+    {
+        id: 2,
+        content: "Browser can execute only JavaScript",
+        date: "2019-05-30T18:39:34.091Z",
+        important: false
+    },
+    {
+        id: 3,
+        content: "GET and POST are the most important methods of HTTP protocol",
+        date: "2019-05-30T19:20:14.298Z",
+        important: true
+    }
+];
+```
+- Examine how `map` works.
+- If the following is added to end of file:
+```javascript
+const result = notes.map(note => note.id);
+console.log(result);
+```
+- `[1, 2, 3]` is printed.
+- `map` creates a new array.
+    - Elements created from elements of the original array by `mapping`.
+    - Use function given as parameter to the `map` method.
+- The function is:
+```javascript
+note => note.id;
+```
+- The above is an arrow function that represents:
+```javascript
+(note) => {
+    return note.id;
+};
+```
+- Function gets `note` object as a parameter and returns its `id` field.
+- Changing to the below code creates an array with the notes' contents.
+```javascript
+const result = notes.map(note => note.content);
+```
+
+
