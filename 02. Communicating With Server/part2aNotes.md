@@ -246,3 +246,77 @@ notes.map((note, i) => ...);
 - Read about it here: `https://robinpokorny.medium.com/index-as-a-key-is-an-anti-pattern-e0349aece318`
 
 
+## Refactoring Modules
+- Use destructuring:
+```javascript
+const App = ({ notes }) => {
+
+    return (
+        <div>
+            <h1>Notes</h1>
+            <ul>
+                {notes.map(note => 
+                    <li key={note.id}>
+                        {note.content}
+                    </li>
+                )}
+            </ul>
+        </div>
+    );
+};
+
+export default App;
+```
+- Separate displaying note to its own component `Note`.
+```javascript
+const Note = ({ note }) => {
+    return (
+        <li>{note.content}</li>
+    );
+};
+
+const App = (props) => {
+    const { notes } = props;
+
+    return (
+        <div>
+            <h1>Notes</h1>
+            <ul>
+                {notes.map(note => 
+                    <Note key={note.id} note={note} />
+                )}
+            </ul>
+        </div>
+    );
+};
+
+export default App;
+```
+- Now the key attribute is defined for `Note` and not for the `li` tags.
+- Common practice to declare components in their own file as an ES6 module.
+- Move `Note` to its own module.
+    - Place the module in `components` directory in the `src` folder.
+    - Name file after the component.
+    - Place file `Note.js` inside.
+```javascript
+import React from 'react';
+
+const Note = ({ note }) => {
+    return (
+        <li>{note.content}</li>
+    );
+};
+
+export default Note;
+```
+- Import the module into `App.js`:
+```javascript
+import Note from './components/Note';
+
+const App = ({ notes }) => {
+    // ...
+};
+```
+- Extension `.js` can be excluded when importing.
+
+
