@@ -37,17 +37,22 @@ const Total = (props) => {
 };
 
 const Course = (props) => {
+    console.log(props.courses);
     return (
-        <div>
-            <Header name={props.course.name} />
-            <Content parts={props.course.parts} />
-            <Total parts={props.course.parts} />
-        </div>
+        <>
+            {props.courses.map(course =>
+                <div>
+                    <Header name={course.name} />
+                    <Content parts={course.parts} />
+                    <strong><Total parts={course.parts} /></strong>
+                </div>
+            )}
+        </>
     );
 };
 
 const App = () => {
-    const course = [
+    const courses = [
         {
             id: 1,
             name: "Half Stack Application Development",
@@ -87,7 +92,7 @@ const App = () => {
         }
     ];
 
-    return <Course course={course} />;
+    return <Course courses={courses} />;
 };
 
 export default App;
