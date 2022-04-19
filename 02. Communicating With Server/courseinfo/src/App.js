@@ -37,11 +37,10 @@ const Total = (props) => {
 };
 
 const Course = (props) => {
-    console.log(props.courses);
     return (
         <>
             {props.courses.map(course =>
-                <div>
+                <div key={course.id}>
                     <Header name={course.name} />
                     <Content parts={course.parts} />
                     <strong><Total parts={course.parts} /></strong>
