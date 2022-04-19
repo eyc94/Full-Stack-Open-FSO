@@ -6,7 +6,7 @@ const App = (props) => {
             <h2>Notes</h2>
             <ul>
                 {notes.map(note =>
-                    <li>
+                    <li key={note.id}>
                         {note.content}
                     </li>
                 )}
