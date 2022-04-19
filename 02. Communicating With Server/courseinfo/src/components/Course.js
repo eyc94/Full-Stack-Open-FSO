@@ -40,4 +40,16 @@ const Content = (props) => {
     );
 };
 
+const Total = (props) => {
+    const total = props.parts.reduce((accumulator, part) => {
+        return accumulator + part.exercises;
+    }, 0)
+
+    return (
+        <>
+            <p>Total of {total} exercises</p>
+        </>
+    );
+};
+
 export default Course;
