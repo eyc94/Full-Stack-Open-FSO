@@ -92,7 +92,12 @@ const App = () => {
         }
     ];
 
-    return <Course courses={courses} />;
+    return (
+        <div>
+            <h1>Web Development Curriculum</h1>
+            <Course courses={courses} />
+        </div>
+    );
 };
 
 export default App;
