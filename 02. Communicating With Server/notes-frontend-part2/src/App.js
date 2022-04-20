@@ -4,6 +4,11 @@ import Note from "./components/Note";
 const App = (props) => {
     const [notes, setNotes] = useState(props.notes);
 
+    const addNote = (event) => {
+        event.preventDefault();
+        console.log("button clicked", event.target);
+    };
+
     return (
         <div>
             <h2>Notes</h2>
