@@ -10,13 +10,17 @@ const App = () => {
 
     };
 
+    const handlePersonChange = (event) => {
+
+    };
+
     return (
         <div>
             <h2>Phonebook</h2>
             <form onSubmit={addPerson}>
                 <div>debug: {newName}</div>
                 <div>
-                    name: <input />
+                    name: <input value={newName} onChange={handlePersonChange} />
                 </div>
                 <div>
                     <button type="submit">Add</button>
