@@ -25,7 +25,6 @@ const App = () => {
         <div>
             <h2>Phonebook</h2>
             <form onSubmit={addPerson}>
-                <div>debug: {newName}</div>
                 <div>
                     name: <input value={newName} onChange={handlePersonChange} />
                 </div>
