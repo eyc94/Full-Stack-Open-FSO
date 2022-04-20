@@ -12,6 +12,11 @@ const App = (props) => {
         console.log("button clicked", event.target);
     };
 
+    const handleNoteChange = (event) => {
+        console.log(event.target.value);
+        setNewNote(event.target.value);
+    }
+
     return (
         <div>
             <h2>Notes</h2>
