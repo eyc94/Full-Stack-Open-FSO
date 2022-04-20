@@ -6,10 +6,14 @@ const App = () => {
     ]);
     const [newName, setNewName] = useState('');
 
+    const addPerson = (event) => {
+
+    };
+
     return (
         <div>
             <h2>Phonebook</h2>
-            <form>
+            <form onSubmit={addPerson}>
                 <div>debug: {newName}</div>
                 <div>
                     name: <input />
