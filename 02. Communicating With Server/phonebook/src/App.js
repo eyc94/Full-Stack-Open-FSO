@@ -11,7 +11,8 @@ const App = () => {
     };
 
     const handlePersonChange = (event) => {
-
+        console.log(event.target.value);
+        setNewName(event.target.value);
     };
 
     return (
