@@ -71,3 +71,134 @@ const App = (props) => {
 - How to access data in form's input element?
 
 
+## Controlled Component
+- Access form data from input element from `controlled components`.
+- Add new piece of state called `newNote` to store user-submitted input.
+    - Set it as input element's `value` attribute.
+```javascript
+const App = (props) => {
+    const [notes, setNotes] = useState(props.notes);
+    const [newNote, setNewNote] = useState(
+        'a new note...'
+    );
+
+    const addNote = (event) => {
+        event.preventDefault();
+        console.log('button clicked', event.target);
+    };
+
+    return (
+        <div>
+            <h1>Notes</h1>
+            <ul>
+                {notes.map(note =>
+                    <Note key={note.id} note={note} />
+                )}
+            </ul>
+            <form onSubmit={addNote}>
+                <input value={newNote} />
+                <button type="submit">save</button>
+            </form>
+        </div>
+    );
+};
+```
+- The `newNote` state's placeholder text appears in input element.
+    - Cannot be edited.
+    - Console gives warning saying we gave a `value` without an `onChange` handler.
+        - Renders a 'read-only' field.
+- The `App` component controls behavior of input element because piece of state was assigned to value of input element.
+- To allow editing, we need to assign an `event handler` that synchronizes the changes made to input with the state.
+```javascript
+const App = (props) => {
+    const [notes, setNotes] = useState(props.notes);
+    const [newNote, setNewNote] = useState(
+        'a new note...'
+    );
+
+    // ...
+
+    const handleNoteChange = (event) => {
+        console.log(event.target.value);
+        setNewNote(event.target.value);
+    };
+
+    return (
+        <div>
+            <h1>Notes</h1>
+            <ul>
+                {notes.map(note =>
+                    <Note key={note.id} note={note} />
+                )}
+            </ul>
+            <form onSubmit={addNote}>
+                <input
+                    value={newNote}
+                    onChange={handleNoteChange}
+                />
+                <button type="submit">save</button>
+            </form>
+        </div>
+    );
+};
+```
+- Event handler called on every change of the input element.
+    - Receives event object as `event` parameter.
+    - `target` is now the controlled input element.
+    - `event.target.value` refers to the value of the input element.
+- No call to `event.preventDefault()` is required.
+    - No default action occurs on input change.
+    - Follow along in console.
+- `App` component's `newNote` state shows current value of input.
+    - Complete `addNote` function:
+```javascript
+const App = (props) => {
+    const [notes, setNotes] = useState(props.notes);
+    const [newNote, setNewNote] = useState(
+        'a new note...'
+    );
+
+    const addNote = (event) => {
+        event.preventDefault();
+        const noteObject = {
+            content: newNote,
+            date: new Date().toISOString(),
+            important: Math.random() < 0.5,
+            id: notes.length + 1
+        };
+
+        setNotes(notes.concat(noteObject));
+        setNewNote('');
+    };
+
+    const handleNoteChange = (event) => {
+        console.log(event.target.value);
+        setNewNote(event.target.value);
+    };
+
+    return (
+        <div>
+            <h1>Notes</h1>
+            <ul>
+                {notes.map(note =>
+                    <Note key={note.id} note={note} />
+                )}
+            </ul>
+            <form onSubmit={addNote}>
+                <input
+                    value={newNote}
+                    onChange={handleNoteChange}
+                />
+                <button type="submit">save</button>
+            </form>
+        </div>
+    );
+};
+```
+- First, create new `noteObject`.
+    - The content is received from `newNote` state.
+- New note is added to list of notes using `concat()`.
+    - Never mutate state directly!!
+- Resets the value of input.
+
+
