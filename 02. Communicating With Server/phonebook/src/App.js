@@ -10,6 +10,7 @@ const App = () => {
         <div>
             <h2>Phonebook</h2>
             <form>
+                <div>debug: {newName}</div>
                 <div>
                     name: <input />
                 </div>
