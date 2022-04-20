@@ -12,6 +12,10 @@ const App = (props) => {
                     <Note key={note.id} note={note} />
                 )}
             </ul>
+            <form onSubmit={addNote}>
+                <input />
+                <button type="submit">save</button>
+            </form>
         </div>
     );
 };
