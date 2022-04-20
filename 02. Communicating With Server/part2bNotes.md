@@ -202,3 +202,96 @@ const App = (props) => {
 - Resets the value of input.
 
 
+## Filtering Displayed Elements
+- How to view only important notes.
+- Add piece of state to `App` that keeps track of which notes should be shown.
+```javascript
+const App = (props) => {
+    const [notes, setNotes] = useState(prop.notes);
+    const [newNote, setNewNote] = useState('');
+    const [showAll, setShowAll] = useState(true);
+
+    // ...
+};
+```
+- Store list of notes to show in the `notesToShow` variable.
+    - Items of list depend on state of component.
+```javascript
+import { useState } from 'react';
+import Note from './components/Note';
+
+const App = (props) => {
+    const [notes, setNotes] = useState(props.notes);
+    const [newNote, setNewNote] = useState('');
+    const [showAll, setShowAll] = useState(true);
+
+    // ...
+    const notesToShow = showAll
+        ? notes
+        : notes.filter(note => note.important === true);
+
+    return (
+        <div>
+            <h1>Notes</h1>
+            <ul>
+                {notesToShow.map(note =>
+                    <Note key={note.id} note={note} />
+                )}
+            </ul>
+            <form onSubmit={addNote}>
+                <input
+                    value={newNote}
+                    onChange={handleNoteChange}
+                />
+                <button type="submit">save</button>
+            </form>
+        </div>
+    );
+};
+```
+- The `notesToShow` variable uses `conditional` operator.
+    - Can simplify like shown:
+```javascript
+notes.filter(note => note.important);
+```
+- Test filtering by changing value of `showAll` state.
+- Add functionality that allows user to toggle the `showAll` state of app from UI.
+```javascript
+import { useState } from 'react';
+import Note from './components/Note';
+
+const App = (props) => {
+    const [notes, setNotes] = useState(props.notes);
+    const [newNote, setNewNote] = useState('');
+    const [showAll, setShowAll] = useState(true);
+
+    // ...
+
+    return (
+        <div>
+            <h1>Notes</h1>
+            <div>
+                <button onClick={() => setShowAll(!showAll)}>
+                    show {showAll ? 'important' : 'all'}
+                </button>
+            </div>
+            <ul>
+                {notes.map(note =>
+                    <Note key={note.id} note={note} />
+                )}
+            </ul>
+            <form onSubmit={addNote}>
+                <input
+                    value={newNote}
+                    onChange={handleNoteChange}
+                />
+                <button type="submit">save</button>
+            </form>
+        </div>
+    );
+};
+```
+- The display is controlled by a button.
+- Event handler is simple, so it is defined inline.
+
+
