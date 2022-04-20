@@ -24,13 +24,15 @@ const App = (props) => {
         setNewNote(event.target.value);
     };
 
-
+    const notesToShow = showAll
+        ? notes
+        : notes.filter(note => note.important);
 
     return (
         <div>
             <h2>Notes</h2>
             <ul>
-                {notes.map(note =>
+                {notesToShow.map(note =>
                     <Note key={note.id} note={note} />
                 )}
             </ul>
