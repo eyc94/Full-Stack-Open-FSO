@@ -34,7 +34,11 @@ const App = () => {
                 </div>
             </form>
             <h2>Numbers</h2>
-            ...
+            <div>
+                {persons.map(person =>
+                    <div>{person.name}</div>
+                )}
+            </div>
         </div>
     );
 };
