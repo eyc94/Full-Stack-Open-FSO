@@ -7,7 +7,13 @@ const App = () => {
     const [newName, setNewName] = useState('');
 
     const addPerson = (event) => {
+        event.preventDefault();
+        const personObject = {
+            name: newName
+        };
 
+        setPersons(persons.concat(personObject));
+        setNewName('');
     };
 
     const handlePersonChange = (event) => {
