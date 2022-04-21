@@ -26,7 +26,7 @@ const App = () => {
         setNewName('');
     };
 
-    const handlePersonChange = (event) => {
+    const handleNameChange = (event) => {
         console.log(event.target.value);
         setNewName(event.target.value);
     };
@@ -36,8 +36,8 @@ const App = () => {
             <h2>Phonebook</h2>
             <form onSubmit={addPerson}>
                 <div>
-                    <div>Name: <input value={newName} onChange={handlePersonChange} /></div>
-                    <div>Number: <input /></div>
+                    <div>Name: <input value={newName} onChange={handleNameChange} /></div>
+                    <div>Number: <input value={newNumber} onChange={handleNumberChange} /></div>
                 </div>
                 <div>
                     <button type="submit">Add</button>
