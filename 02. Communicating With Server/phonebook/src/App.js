@@ -38,6 +38,10 @@ const App = () => {
         setNewNumber(event.target.value);
     }
 
+    const handleFilterPerson = (event) => {
+        setFilterPerson(event.target.value);
+    }
+
     return (
         <div>
             <h2>Phonebook</h2>
