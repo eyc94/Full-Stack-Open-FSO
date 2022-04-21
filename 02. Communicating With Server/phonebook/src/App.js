@@ -40,6 +40,9 @@ const App = () => {
     return (
         <div>
             <h2>Phonebook</h2>
+            <div>Filter shown with <input /></div>
+
+            <h2>Add New Person</h2>
             <form onSubmit={addPerson}>
                 <div>
                     <div>Name: <input value={newName} onChange={handleNameChange} /></div>
@@ -49,6 +52,7 @@ const App = () => {
                     <button type="submit">Add</button>
                 </div>
             </form>
+
             <h2>Numbers</h2>
             <div>
                 {persons.map(person =>
