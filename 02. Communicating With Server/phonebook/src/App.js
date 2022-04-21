@@ -42,6 +42,10 @@ const App = () => {
         setFilterPerson(event.target.value);
     }
 
+    const personsToShow = persons.filter(person =>
+        person.name.toLowerCase().includes(filterPerson.toLowerCase())
+    );
+
     return (
         <div>
             <h2>Phonebook</h2>
@@ -60,7 +64,7 @@ const App = () => {
 
             <h2>Numbers</h2>
             <div>
-                {persons.map(person =>
+                {personsToShow.map(person =>
                     <div key={person.name}>{person.name} {person.number}</div>
                 )}
             </div>
