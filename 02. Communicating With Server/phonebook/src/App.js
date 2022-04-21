@@ -41,7 +41,7 @@ const App = () => {
     return (
         <div>
             <h2>Phonebook</h2>
-            <div>Filter shown with <input /></div>
+            <div>Filter shown with <input value={filterPerson} onChange={handleFilterPerson} /></div>
 
             <h2>Add New Person</h2>
             <form onSubmit={addPerson}>
