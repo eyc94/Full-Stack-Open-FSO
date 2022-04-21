@@ -17,19 +17,24 @@ const App = () => {
             alert(`${newName} is already added to the phonebook!`)
         } else {
             const personObject = {
-                name: newName
+                name: newName,
+                number: newNumber
             };
 
             setPersons(persons.concat(personObject));
         }
 
         setNewName('');
+        setNewNumber('');
     };
 
     const handleNameChange = (event) => {
-        console.log(event.target.value);
         setNewName(event.target.value);
     };
+
+    const handleNumberChange = (event) => {
+        setNewNumber(event.target.value);
+    }
 
     return (
         <div>
