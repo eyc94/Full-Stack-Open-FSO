@@ -2,9 +2,13 @@ import { useState } from 'react';
 
 const App = () => {
     const [persons, setPersons] = useState([
-        { name: "Arto Hellas" }
+        {
+            name: "Arto Hellas",
+            number: "040-1234567"
+        }
     ]);
     const [newName, setNewName] = useState('');
+    const [newNumber, setNewNumber] = useState('');
 
     const addPerson = (event) => {
         event.preventDefault();
