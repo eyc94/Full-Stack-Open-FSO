@@ -32,7 +32,8 @@ const App = () => {
             <h2>Phonebook</h2>
             <form onSubmit={addPerson}>
                 <div>
-                    Name: <input value={newName} onChange={handlePersonChange} />
+                    <div>Name: <input value={newName} onChange={handlePersonChange} /></div>
+                    <div>Number: <input /></div>
                 </div>
                 <div>
                     <button type="submit">Add</button>
