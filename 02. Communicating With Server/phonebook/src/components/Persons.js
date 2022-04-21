@@ -1,10 +1,11 @@
 import React from 'react';
+import Person from './Person';
 
 const Persons = (props) => {
     return (
         <div>
             {props.persons.map(person =>
-                <div key={person.id}>{person.name} {person.number}</div>
+                <Person key={person.id} name={person.name} number={person.number} />
             )}
         </div>
     );
