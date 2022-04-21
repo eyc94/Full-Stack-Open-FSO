@@ -48,3 +48,43 @@ npx json-server --port 3001 --watch db.json
     - `json-server` is a tool used during dev phase to enable server-side functionality without the need to program it.
 
 
+## The Browser As A Runtime Environment
+- First task is to fetch notes to our React app from `http://localhost:3001/notes`.
+- In part 0, we went over how to fetch data from a server using JS.
+    - This was done using `XMLHttpRequest`.
+    - HTTP request made using an XHR object.
+    - No longer recommended.
+    - Browsers widely support `fetch` method based on `promises`.
+- As a reminder, do not do the below:
+```javascript
+const xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        const data = JSON.parse(this.responseText);
+        // Handle the response that is saved in variable data.
+    }
+};
+
+xhttp.open('GET', '/data.json', true);
+xhttp.send();
+```
+- In the beginning, event handler is registered to `xhttp` object representing the HTTP request.
+    - Called by JS runtime when state of `xhttp` changes.
+    - If change in state means response to request has arrived, handle accordingly.
+- Code in event handler is defined before request is sent to server.
+    - Code will execute at a later point in time.
+    - Code does not execute `synchronously` (top to bottom) but does so `asynchronously`.
+    - JS calls event handler at some later point.
+- JS engines, or runtime environments, follow asynchronous model.
+    - Requires all IO-operations to be run as non-blocking.
+    - Non-blocking means that code execution continues immediately after calling an IO function without waiting for it to return.
+- When async operation is done, or at some later point after it's done, the JS engine calls the event handler registered to the operation.
+- JS engines are `single-threaded`.
+    - Cannot execute code in parallel.
+    - Thus, requirement to use a non-blocking model for running IO operations.
+    - Else the browser would freeze during execution.
+- Browser might get stuck during one execution.
+- Nowadays you can run parallelized code with `web workers`.
+
+
