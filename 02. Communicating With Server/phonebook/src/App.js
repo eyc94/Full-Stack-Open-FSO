@@ -10,6 +10,7 @@ const App = () => {
 
     const [newName, setNewName] = useState('');
     const [newNumber, setNewNumber] = useState('');
+    const [filterPerson, setFilterPerson] = useState('');
 
     const addPerson = (event) => {
         event.preventDefault();
