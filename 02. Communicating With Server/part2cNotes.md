@@ -88,3 +88,108 @@ xhttp.send();
 - Nowadays you can run parallelized code with `web workers`.
 
 
+## npm
+- Get back to fetching data from the server.
+- Can use `fetch`.
+    - Standardized and supported by all modern browsers.
+- Use `axios` library instead for communication between browser and server.
+    - Like `fetch` but more pleasant to use.
+    - Good for getting familiar with `npm packages`.
+- All JS projects are defined using node package manager, or `npm`.
+    - `create-react-app` projects also follow npm format.
+    - Clear indicator is the `package.json` file.
+```json
+{
+    "name": "notes",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.1.1",
+        "@testing-library/user-event": "^13.5.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-scripts": "5.0.1",
+        "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}
+```
+- The `dependencies` section is most important to us right now.
+    - This means external libraries.
+- Install `axios`:
+```
+npm install axios
+```
+- Run the command in the root directory.
+- `axios` should now be included.
+```json
+{
+    "name": "notes-frontend-part2",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.1.1",
+        "@testing-library/user-event": "^13.5.0",
+        "axios": "^0.24.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-scripts": "5.0.1",
+        "web-vitals": "^2.1.4"
+    }
+}
+```
+- The command downloads dependencies inside `node_modules` folder.
+- Let's install `json-server` as a development dependency.
+```
+npm install json-server --save-dev
+```
+- Make the following script:
+```json
+{
+    // ...
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "server": "json-server -p3001 --watch db.json"
+    }
+}
+```
+- Can start json-server from root with:
+```
+npm run server
+```
+- Previously started server must be stopped before starting a new one.
+- `axios` is a runtime dependency.
+    - Execution of program requires existence of the library.
+- `json-server` is a development dependency (`--save-dev`).
+    - Program doesn't require it.
+    - Assist in software development.
+
+
